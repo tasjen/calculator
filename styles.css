@@ -2,6 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Helvetica;
 }
 
 #iphone {
@@ -13,9 +14,14 @@ body {
 }
 
 #display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: 360px;
   height: 190px;
-
+  color: white;
+  margin-left: -20px;
+  font-size: 64px;
 }
 
 #buttons {
@@ -23,7 +29,6 @@ body {
   flex-wrap: wrap;
   margin-bottom: 10px;
   font-size: 32px;
-  font-family: sans-serif;
   
 }
 
