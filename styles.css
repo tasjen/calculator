@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#iphone {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: 640px;
+  background-color: black;
+}
+
+#display {
+  width: 360px;
+  height: 190px;
+
+}
+
+#buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-family: sans-serif;
+  
+}
+
+#buttons div {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#buttons div .circle{
+  width: 75px;
+  height: 75px;
+  border-top-left-radius: 37.5px;
+  border-bottom-left-radius: 37.5px;
+  border-top-right-radius: 37.5px;
+  border-bottom-right-radius: 37.5px;
+}
+
+#buttons #zero {
+  width: 180px;
+  display: flex;
+}
+
+#buttons #zero .circle {
+  display: flex;
+  justify-content: flex-start;
+  width: 160px;
+}
+
+.circle p {
+  padding-left: 26.5px;
+}
+
+.special {
+  background-color: rgb(165, 165, 165);
+  color: black;
+}
+
+.operand {
+  background-color: rgb(51, 51, 51);
+  color: white;
+}
+
+.operator {
+  background-color: rgb(254, 159, 10);
+  color: white;
+}
