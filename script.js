@@ -55,9 +55,8 @@ equal.addEventListener('click', () => {
   isOperatorPressed = false;
   if (y === null){
     isEqualing = false;
-    return;
   }
-  if (!isEqualing){
+  else if (!isEqualing){
     y = display.textContent;
     display.textContent = operate(x, operator, y);
     isEqualing = true;
