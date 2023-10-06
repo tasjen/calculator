@@ -1,4 +1,4 @@
-let x = 0;
+let x = '0';
 let operator = '+';
 let y = null;
 
@@ -32,7 +32,6 @@ operators.forEach(each => {
       operator = each.textContent;
       isOperatorPressed = true;
       return;
-
     }
     if (isOperatorPressed){
       operator = each.textContent;
@@ -54,6 +53,10 @@ operators.forEach(each => {
 const equal = document.querySelector('#equal');
 equal.addEventListener('click', () => {
   isOperatorPressed = false;
+  if (y === null){
+    isEqualing = false;
+    return;
+  }
   if (!isEqualing){
     y = display.textContent;
     display.textContent = operate(x, operator, y);
@@ -76,19 +79,23 @@ equal.addEventListener('click', () => {
 
 
 
-
-
-
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
   display.textContent = '0';
-  operator = '+';
-  isOperatorPressed = false;
   x='0';
+  operator = '+';
   y=null;
+  isOperatorPressed = false;
+  isEqualing = false;
 });
 
-
+const sign = document.querySelector('#sign');
+sign.addEventListener('click', () => {
+  if (isOperatorPressed){
+    display.textContent = display.textContent === '-0' ? '0' : '-0';
+  }
+  else display.textContent = display.textContent === '0' ? '-0' : -display.textContent;
+})
 
 
 
