@@ -8,16 +8,28 @@ let isEqualing = false;
 const number = document.querySelectorAll('.number');
 const display = document.querySelector('#display');
 const operators = document.querySelectorAll('.op');
-
+const dot = document.querySelector('#dot');
+const equal = document.querySelector('#equal');
+const reset = () => {
+  display.textContent = '0';
+  x='0';
+  operator = '+';
+  y=null;
+  isOperatorPressed = false;
+  isEqualing = false;
+}
 
 
 number.forEach(each => {
   each.addEventListener('click', () => {
+    if (isEqualing) reset();
     if (isOperatorPressed || display.textContent === '0'){
       display.textContent = each.firstChild.textContent;
+      isEqualing = false;
     }
     else display.textContent += each.firstChild.textContent;
-    
+
+    isEqualing = false;
     isOperatorPressed = false;
   });
 })
@@ -50,7 +62,6 @@ operators.forEach(each => {
 })
 
 
-const equal = document.querySelector('#equal');
 equal.addEventListener('click', () => {
   isOperatorPressed = false;
   if (y === null){
@@ -69,8 +80,11 @@ equal.addEventListener('click', () => {
   }
 });
 
-
-
+dot.addEventListener('click', () => {
+  if (isOperatorPressed) {
+    display.textContent;
+  }
+})
 
 
 
@@ -79,14 +93,7 @@ equal.addEventListener('click', () => {
 
 
 const clear = document.querySelector('#clear');
-clear.addEventListener('click', () => {
-  display.textContent = '0';
-  x='0';
-  operator = '+';
-  y=null;
-  isOperatorPressed = false;
-  isEqualing = false;
-});
+clear.addEventListener('click', reset);
 
 const sign = document.querySelector('#sign');
 sign.addEventListener('click', () => {
@@ -95,6 +102,8 @@ sign.addEventListener('click', () => {
   }
   else display.textContent = display.textContent === '0' ? '-0' : -display.textContent;
 })
+
+
 
 
 
