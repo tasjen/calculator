@@ -25,11 +25,8 @@ number.forEach(each => {
     if (isEqualing) reset();
     if (isOperatorPressed || display.textContent === '0'){
       display.textContent = each.firstChild.textContent;
-      isEqualing = false;
     }
     else display.textContent += each.firstChild.textContent;
-
-    isEqualing = false;
     isOperatorPressed = false;
   });
 })
