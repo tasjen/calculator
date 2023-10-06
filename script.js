@@ -39,25 +39,15 @@ operators.forEach(each => {
   each.addEventListener('click', () => {
     
     if (isEqualing){
-      x = display.textContent;
       isEqualing = false;
-      operator = each.textContent;
-      isOperatorPressed = true;
-      return;
     }
-    if (isOperatorPressed){
-      operator = each.textContent;
-      return;
-    }
-    else {
+    else if (!isOperatorPressed) {
       y = display.textContent;
       display.textContent = operate(x, operator, y);
-      operator = each.textContent;
     }
+    operator = each.textContent;
     x = display.textContent;
     isOperatorPressed = true;
-
-
   })
 })
 
