@@ -2,8 +2,11 @@ let x = '0';
 let operator = '+';
 let y = null;
 
+let result = 0;
+
 let isOperatorPressed = false;
 let isEqualing = false;
+let isChangingX = false;
 
 const number = document.querySelectorAll('.number');
 const display = document.querySelector('#display');
@@ -17,14 +20,16 @@ const reset = () => {
   y=null;
   isOperatorPressed = false;
   isEqualing = false;
+  isChangingX = false;
 }
 
 
 number.forEach(each => {
   each.addEventListener('click', () => {
-    if (isEqualing) reset();
-    if (isOperatorPressed || display.textContent === '0'){
+    if (isEqualing || isOperatorPressed || display.textContent === '0'){
       display.textContent = each.firstChild.textContent;
+      if (isEqualing) isChangingX = true;
+      isEqualing = false;
     }
     else display.textContent += each.firstChild.textContent;
     isOperatorPressed = false;
@@ -51,7 +56,15 @@ operators.forEach(each => {
 
 equal.addEventListener('click', () => {
   isOperatorPressed = false;
-  if (y === null){
+
+  if (isChangingX){
+    x = display.textContent;
+    display.textContent = operate(x, operator, y);
+    isChangingX = false;
+    isEqualing = true;
+  }
+
+  else if (y === null){
     isEqualing = false;
   }
   else if (!isEqualing){
@@ -59,9 +72,9 @@ equal.addEventListener('click', () => {
     display.textContent = operate(x, operator, y);
     isEqualing = true;
   }
-  else if (isOperatorPressed){
-    display.textContent = operate(display.textContent, operator, display.textContent);
-  }
+  // else if (isOperatorPressed){
+  //   display.textContent = operate(display.textContent, operator, display.textContent);
+  // }
   else {
     display.textContent = operate(display.textContent, operator, y);
   }
@@ -72,12 +85,6 @@ dot.addEventListener('click', () => {
     display.textContent;
   }
 })
-
-
-
-
-
-
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', reset);
@@ -144,15 +151,21 @@ function divide(a, b) {
 function operate(a, operator, b) {
   switch (operator) {
     case "+":
-      return Math.round(add(a, b) * 10 ** 8) / 10**8;
+      return add(a, b);
     case "–":
-      return Math.round(subtract(a, b) * 10 ** 8) / 10**8;
+      return subtract(a, b);
     case "x":
-      return Math.round(multiply(a, b) * 10 ** 8) / 10**8;
+      return multiply(a, b);
     case "÷":
-      return Math.round(divide(a, b) * 10 ** 8) / 10**8;
+      return divide(a, b);
   }
 }
+
+function digitControl(number){
+  number = number.toString();
+  number = number.slice(number.find('.'));
+}
+
 
 
 const aMonitor = document.querySelector('#a');
